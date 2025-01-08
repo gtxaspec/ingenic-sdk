@@ -33,9 +33,9 @@ jobs:
             chip: t31
           - target: shark
             chip: t40
-          #- target: marmot
-          #  chip: t41
-  
+          - target: marmot
+            chip: t41
+
     steps:
       - name: Update package manager sources
         run: |
@@ -109,6 +109,8 @@ jobs:
           # Clone Linux repository
           if [ "${{ matrix.chip }}" = "t40" ]; then
           git clone --depth 1 https://github.com/gtxaspec/thingino-linux -b ingenic-t40 linux
+          elif [ "${{ matrix.chip }}" = "t41" ]; then
+          git clone --depth 1 https://github.com/gtxaspec/thingino-linux -b ingenic-t41-4.4.94 linux
           else
           git clone --depth 1 https://github.com/gtxaspec/thingino-linux -b ingenic-t31 linux
           fi
@@ -158,5 +160,5 @@ jobs:
             ./artifacts/sinfo-t30/sinfo-t30.ko
             ./artifacts/sinfo-t31/sinfo-t31.ko
             ./artifacts/sinfo-t40/sinfo-t40.ko
-            #./artifacts/sinfo-t31/sinfo-t41.ko
+            ./artifacts/sinfo-t31/sinfo-t41.ko
 
